@@ -57,7 +57,7 @@ class Subject(models.Model):
         return self.name 
    
 class StudentChat(models.Model):
-    student_name=models.ForeignKey(MyUser)
+    student_name=models.ForeignKey(MyUser,on_delete=models.CASCADE)
     message=models.TextField()
     chat_img=models.ImageField(upload_to="app/students/chat_images",null=True,blank=True)
     chat_doc=models.FileField(upload_to="app/students/chat_docs",null=True,blank=True)
@@ -68,10 +68,10 @@ class StudentChat(models.Model):
         ordering=["-pub_date"]
     
 class FacultyChat(models.Model):
-    faculty_name=models.ForeignKey(MyUser)
+    faculty_name=models.ForeignKey(MyUser,on_delete=models.CASCADE)
     message=models.TextField()
     chat_img=models.ImageField(upload_to="app/faculty/chat_images",null=True,blank=True)
-    chat_doc=models.FileField(upload_to="app//faculty/chat_docs",null=True,blank=True)
+    chat_doc=models.FileField(upload_to="app/faculty/chat_docs",null=True,blank=True)
     
     def __str__(self) -> str:
         return '%s-%s' % (self.faculty.first_name,self.faculty.last_name)
@@ -96,9 +96,9 @@ class Quiz(models.Models):
         ordering=["-pub_date"]
     
 class ClassActivity(models.Model):
-   all_chats=models.ManyToManyField(StudentChat)
+   all_chats=models.ManyToManyField(StudentChat,on_delete=models.CASCADE)
    student_name=models.ForeignKey(MyUser,on_delete=models.CASCADE)
-   topics=models.ManyToManyField(Topic,null=True,blank=True)
-   links=models.ManyToManyField(Link,null=True,blank=True)
+   topics=models.ManyToManyField(Topic,null=True,blank=True,on_delete=models.CASCADE)
+   links=models.ManyToManyField(Link,null=True,blank=True,on_delete=models.CASCADE)
    
      
