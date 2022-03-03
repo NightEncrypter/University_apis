@@ -44,10 +44,10 @@ class UserManager(BaseUserManager):
 class MyUser(AbstractUser):
     username=None
     email=models.EmailField(_('email address'),unique=True,max_length=120)
-    profile_img=models.ImageField(upload_to='profiles/img',null=False,blank=True)
     created_at=models.DateTimeField(auto_now=True)
     updated_at=models.DateTimeField(auto_now_add=True)
-     
+    profile=models.ImageField(uploaded_to="app/profile/img",blank=True,null=True)
+    
     objects=UserManager()
     
     REQUIRED_FIELDS=[]
