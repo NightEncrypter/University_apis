@@ -1,4 +1,3 @@
-from xml.parsers.expat import model
 from django.db import models
 from django.contrib.auth.models import BaseUserManager,AbstractUser
 # Create your models here.
@@ -43,9 +42,9 @@ class UserManager(BaseUserManager):
 
 
 USER_TYPES=(
-    "STUDENT",
-    'SUPERADMIN',
-    'TEACHER'
+   ( "STUDENT","STUDENT"),
+    ('SUPERADMIN','SUPERADMIN'),
+    ('TEACHER','TEACHER')
 )
 
 class MyUser(AbstractUser):
