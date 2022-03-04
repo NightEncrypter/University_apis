@@ -9,8 +9,8 @@ class Student(models.Model):
     student_name=models.OneToOneField(MyUser,on_delete=models.CASCADE)
     score=models.IntegerField()
     chat_activities=models.ManyToManyField('StudentChat')
-    recent_lectures=models.ManyToManyField('Video')
-    recent_pdfs=models.ManyToManyField('Docx')
+    recent_lectures=models.ManyToManyField('SubjectVideo')
+    recent_pdfs=models.ManyToManyField('SubjectDocx')
     recent_links=models.ManyToManyField('Link')
     batch=models.IntegerField(blank=True,null=True)
     performance=models.CharField(blank=True,null=True,max_length=200)
@@ -128,9 +128,10 @@ class Quiz(models.Model):
     right=models.BooleanField(null=True,default=False)
     wrong=models.BooleanField(null=True,default=False)
     quiz_subject=models.ForeignKey(Subject,on_delete=models.CASCADE)
-    quiz_host=models.ForeignKey(MyUser,on_delete=models.CASCADE)
+    faculty_host=models.ForeignKey(MyUser,on_delete=models.CASCADE,related_name="+")
     quiz_of_student=models.ForeignKey(MyUser,on_delete=models.CASCADE)
-    
+    quize_score=models.DecimalField(max_digits=5,decimal_places=2, null=True,blank=True)
+    total_marks=models.DecimalField(max_digits=5,decimal_places=2,null=True,blank=True)
     def __str__(self) -> str:
         return self.question
    
@@ -147,6 +148,7 @@ class ClassActivity(models.Model):
 class VideoThumbnails(models.Model):
     video_img=models.ImageField(upload_to='app/uploads/faculties/class_on_meet/thumb_img',blank=True,null=True)
     name=models.CharField(max_length=150,null=True,blank=True)
+    thumbnails=models.ForeignKey('ClassMeet',on_delete= models.CASCADE,null=True)
     
     def __str__(self):
         return f"VideoThumb {self.id}"
@@ -160,7 +162,8 @@ class ClassMeet(models.Model):
     host=models.ForeignKey(MyUser,on_delete=models.CASCADE,null=True,blank=True)
     participants=models.ManyToManyField(MyUser,blank=True,related_name="student_participants")
     created_at=models.DateTimeField(auto_now=True)
-    thumbnails=models.ForeignKey(VideoThumbnails,on_delete= models.CASCADE,null=True)
+    
+    
     def __str__(self) -> str:
         return f"Video of {self.topic_name} ({self.on_subject}) is uploaded [{self.host}] "
 
@@ -174,6 +177,7 @@ class Assignment(models.Model):
     student_submit=models.ForeignKey(MyUser,on_delete=models.CASCADE)
     desc=models.TextField(null=True,blank=True)
     related_to_sub=models.ForeignKey(Subject,on_delete=models.CASCADE)
+    submitted=models.BooleanField(default=False)
 
     def __str__(self):
         return f"Assignment of {self.related_to_sub} {self.file_name} from {self.student} is submitted"
