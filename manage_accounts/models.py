@@ -1,3 +1,4 @@
+from xml.parsers.expat import model
 from django.db import models
 from django.contrib.auth.models import BaseUserManager,AbstractUser
 # Create your models here.
@@ -41,13 +42,19 @@ class UserManager(BaseUserManager):
     
 
 
+USER_TYPES=(
+    "STUDENT",
+    'SUPERADMIN',
+    'TEACHER'
+)
+
 class MyUser(AbstractUser):
     username=None
     email=models.EmailField(_('email address'),unique=True,max_length=120)
     created_at=models.DateTimeField(auto_now=True)
     updated_at=models.DateTimeField(auto_now_add=True)
-    profile=models.ImageField(uploaded_to="app/profile/img",blank=True,null=True)
-    
+    profile=models.ImageField(upload_to="app/profile/img",blank=True,null=True)
+    userType=models.CharField(max_length=150,choices=USER_TYPES)
     objects=UserManager()
     
     REQUIRED_FIELDS=[]
