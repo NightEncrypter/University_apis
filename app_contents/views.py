@@ -306,60 +306,60 @@ class Docx_Update_Delete(APIView):
 
 # ----------------------
 
-# #  UPLOADING A TOPIC
-# class TopicView(APIView):
-#     serializer_class=TopicSerializer
+#  UPLOADING A TOPIC
+class TopicView(APIView):
+    serializer_class=TopicSerializer
     
-#     def get(self,request):
-#         try:
-#             snippet=Topic.objects.all()
-#             serializer=TopicSerializer(snippet,many=True)
+    def get(self,request):
+        try:
+            snippet=Topic.objects.all()
+            serializer=TopicSerializer(snippet,many=True)
         
-#             return Response( serializer.data) 
-#         except:
-#             return Response("Topic not found",status=status.HTTP_404_NOT_FOUND) 
-#     def post(self,request):
-#             serializer=TopicSerializer(data=request.data)
-#             if serializer.is_valid():
-#                 serializer.save()
-#                 return Response( serializer.data) 
+            return Response( serializer.data) 
+        except:
+            return Response("Topic not found",status=status.HTTP_404_NOT_FOUND) 
+    def post(self,request):
+            serializer=TopicSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response( serializer.data) 
         
-#             return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST) 
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST) 
         
-#  #TOPIC ==> UPDATE DELETE GET        
-# class Topic_Update_Delete(APIView):
-#     serializer_class=TopicSerializer
+ #TOPIC ==> UPDATE DELETE GET        
+class Topic_Update_Delete(APIView):
+    serializer_class=TopicSerializer
     
-#     def get_obj(self,data):
-#         try:
-#             return get_object_or_404(Topic,id=data)
-#         except Topic.DoesNotExist :
-#             raise Http404
-#     def get(self,request,pk):
+    def get_obj(self,data):
+        try:
+            return get_object_or_404(Topic,id=data)
+        except Topic.DoesNotExist :
+            raise Http404
+    def get(self,request,pk):
         
-#         snippet=self.get_obj(pk)
-#         if snippet:
-#             serializer=TopicSerializer(snippet,many=True)
-#             return Response(serializer.data)
-#         return Response("Topic not found",status=status.HTTP_404_NOT_FOUND)
+        snippet=self.get_obj(pk)
+        if snippet:
+            serializer=TopicSerializer(snippet,many=True)
+            return Response(serializer.data)
+        return Response("Topic not found",status=status.HTTP_404_NOT_FOUND)
     
-#     def put(self,request,pk):
+    def put(self,request,pk):
         
-#         snippet=self.get_obj(pk)
-#         if snippet:
-#             serializer=TopicSerializer(snippet,data=request.data,partial=True)
-#             if serializer.is_valid(raise_exception=True):
-#                 return Response({"msg":"Your topic {name} of Id {id}  is updated".format(name=serializer.data['topic_name'],id=serializer.data['id'])})
-#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#         return Response("Topic not found",status=status.HTTP_404_NOT_FOUND)
+        snippet=self.get_obj(pk)
+        if snippet:
+            serializer=TopicSerializer(snippet,data=request.data,partial=True)
+            if serializer.is_valid(raise_exception=True):
+                return Response({"msg":"Your topic {name} of Id {id}  is updated".format(name=serializer.data['topic_name'],id=serializer.data['id'])})
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response("Topic not found",status=status.HTTP_404_NOT_FOUND)
     
-#     def delete(self,request,pk):
-#         snippet=self.get_obj(pk)
-#         if snippet:
-#             snippet.delete()
-#             return Response({"msg":"Your topic is deleted"})
+    def delete(self,request,pk):
+        snippet=self.get_obj(pk)
+        if snippet:
+            snippet.delete()
+            return Response({"msg":"Your topic is deleted"})
         
-#         return Response("Topic not found",status=status.HTTP_404_NOT_FOUND)
+        return Response("Topic not found",status=status.HTTP_404_NOT_FOUND)
    
  
  
@@ -465,7 +465,7 @@ class Subject_Update_Delete(APIView):
         
         snippet=self.get_obj(pk)
         if snippet:
-            serializer=SubjectSerializer(snippet,many=True)
+            serializer=SubjectSerializer(snippet)
             return Response(serializer.data)
         return Response("Subject not found",status=status.HTTP_404_NOT_FOUND)
     

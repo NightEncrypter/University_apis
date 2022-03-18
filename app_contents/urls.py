@@ -23,16 +23,16 @@ urlpatterns=[
          name="subdocx_update_delete"),
     
 #     # TOPIC
-#     path("uploads/topics",views.TopicView.as_view(),name="topics"), 
-#     path("uploads/topics/<int:pk>",views.Topic_Update_Delete.as_view(), 
-#          name="topic_update_delete"),
+    path("uploads/topics",views.TopicView.as_view(),name="topics"), 
+    path("uploads/topics/<int:pk>",views.Topic_Update_Delete.as_view(), 
+         name="topic_update_delete"),
     
     # UNIT
     path("uploads/units",views.UnitView.as_view(),name="units"),
     path("uploads/units/<int:pk>",views.Unit_Update_Delete.as_view(), name="unit_update_delete"),
     
     # SUB
-    path("uploads/subjects",views.SubjectView.as_view(),name="units"),
+    path("uploads/subjects",views.SubjectView.as_view(),name="subject"),
     path("uploads/subjects/<int:pk>",views.Subject_Update_Delete.as_view(), name="sub_update_delete"),
     
     

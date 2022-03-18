@@ -73,23 +73,23 @@ class DocxSerializer(serializers.ModelSerializer):
         
 class TopicSerializer(serializers.ModelSerializer):
     # links = serializers.PrimaryKeyRelatedField(queryset=Subject.objects.all(),many=False, read_only=True)
-    files = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    images = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    videos = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    # files = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    # images = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    # videos = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         # depth=1
         model=Topic
-        fields="__all__" 
+        exclude=["links","images"]
         
         
 class SubjectSerializer(serializers.ModelSerializer):
-    # units = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    # units = serializers.PrimaryKeyRelatedField(many=True, read_only= pTrue)
     class Meta:
         # depth=1
         model=Subject
         fields="__all__" 
         
-        
+
 class ActivitySerializer(serializers.ModelSerializer):
     
     class Meta:

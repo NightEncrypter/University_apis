@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7cg*@rterr)h%uhye=pj@hkndvfiopad%7u8aypsd00pxzq7bf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOED_HOSTS = ['127.0.0.1','eagertolearn.herokuapp.com']
 
 
 # Application definition
@@ -86,13 +86,18 @@ WSGI_APPLICATION = 'university_app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
+# ! With MongoDb
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'name':"university_app",
+        'CLIENT':{
+            'host':"mongodb+srv://manas2342:ilyalexa@contact-book.z6uhs.mongodb.net/university_app?retryWrites=true&w=majority",
+            'authMechanism': 'SCRAM-SHA-1'
+        }
     }
 }
+# mongodb+srv://manas2342:<password>@contact-book.z6uhs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 AUTH_USER_MODEL="manage_accounts.MyUser"
 
@@ -143,6 +148,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+
+STATIC_ROOT=os.path.join(BASE_DIR,'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.utils.translation import gettext as _
 # Create your models here.
@@ -95,7 +96,7 @@ class Subject(models.Model):
     units=models.ManyToManyField(Unit,blank=True)
     name=models.CharField(max_length=150)
     subject_status=models.IntegerField(blank=True,null=True)
-    img=models.ImageField(upload_to="app/uploads/faculties/subjects/images",null=True,blank=True)
+    img=models.ImageField(upload_to="app/uploads/faculties/subjects/images",default='https://i.postimg.cc/vmM1Hnrc/books.jpg')
     desc=models.TextField(null=True,blank=True)
  
     
