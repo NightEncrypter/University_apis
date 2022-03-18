@@ -28,16 +28,24 @@ class SubjectVideo(models.Model):
     video=models.FileField(upload_to='app/uploads/faculties/subjects/contents/videos',null=True)
     video_name=models.CharField(max_length=150,blank=True)
     
+    def __str__(self) -> str:
+        return f"{self.id} {self.video_name}"
+    
 # This is used for sUBJECT-dOCX  ==> FACULTIES    
 class SubjectDocx(models.Model):
     file=models.FileField(upload_to='app/uploads/faculties/subjects/contents/files',null=True)
     file_name=models.CharField(max_length=150,blank=True)
     
+    def __str__(self) -> str:
+        return self.file_name
+    
+    
 # This is used for sUBJECT-IMAGE  ==> FACULTIES
 class SubjectImage(models.Model):
     image=models.ImageField(upload_to='app/uploads/faculties/subjects/contents/images',null=True)
     image_name=models.CharField(max_length=150,blank=True)
- 
+    def __str__(self) -> str:
+        return self.image_name
 RELATED_LINKS=(('TOPIC_LINKS','TOPIC_LINKS'),('NORMAL','NORMAL'),('REDIRECT_LINK','REDIRECT_LINK'))  
 
 # This is used for all LINKS  ==> FACULTIES 
@@ -135,6 +143,10 @@ class Quiz(models.Model):
     def __str__(self) -> str:
         return self.question
    
+class Answer(models.Model):
+    textAnswer=models.TextField()
+    charAnswer=models.CharField(max_length=200)
+    question=models.ForeignKey(Quiz,on_delete=models.CASCADE)
 # This is used for CLASS ACTIVITIES ==> FACULTY AND ADMIN ACCESS
 class ClassActivity(models.Model):
    all_chats=models.ManyToManyField(StudentChat)

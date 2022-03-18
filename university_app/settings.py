@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os 
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     "rest_framework",
-    "manage_accounts",
+    "manage_accounts",  "corsheaders",
     # "profiles",
     "app_contents",
     'django.contrib.staticfiles',
@@ -51,7 +51,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
+
+
+CORS_ALLOW_ALL_ORIGINS=True
+
+# 'DEFAULT_PARSER_CLASSES': (
+#     'rest_framework.parsers.JSONParser',
+#     'rest_framework.parsers.FormParser',
+#     'rest_framework.parsers.MultiPartParser',
+# )
 
 ROOT_URLCONF = 'university_app.urls'
 
@@ -138,3 +148,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+MEDIA_URL='/media/'
