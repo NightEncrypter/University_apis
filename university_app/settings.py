@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7cg*@rterr)h%uhye=pj@hkndvfiopad%7u8aypsd00pxzq7bf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOED_HOSTS = ['127.0.0.1','eagertolearn.herokuapp.com']
+ALLOED_HOSTS = ['127.0.0.1','eagertolearn.herokuapp.com','localhost']
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     "rest_framework",
     "manage_accounts",  "corsheaders",
-    # "profiles",
+    
     "app_contents",
     'django.contrib.staticfiles',
 ]
@@ -71,7 +71,7 @@ ROOT_URLCONF = 'university_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+     'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,14 +1,12 @@
-from functools import partial
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.parsers import MultiPartParser,FormParser,FileUploadParser
+from rest_framework.parsers import MultiPartParser,FormParser
 # Create your views here.
 from rest_framework import status
 from app_contents.models import Student,Faculty,SubjectVideo,SubjectDocx,SubjectImage,Link,Topic,Unit,Subject,StudentChat,FacultyChat,Quiz,ClassActivity,Assignment,ClassMeet,VideoThumbnails
 from .serializers import TopicSerializer, VideoSerializer,ImageSerializer,LinkSerializer,FacultySerializer,DocxSerializer,UnitSerializer,SubjectSerializer
-from app_contents import serializers
 
 # UPLOADING A VIDEO
 class SubjectVideoView(APIView):
