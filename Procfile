@@ -1,1 +1,1 @@
-web: gunicorn crm university_app.wsgi --log-file -
+gunicorn university_app.wsgi --log-file -
