@@ -9,3 +9,11 @@ class SignUp(APIView):
     def post(self,request):
         
         return Response('')
+    
+    
+class Home(APIView):
+    
+    
+    def get(self,request):
+        
+        return Response(["Hello","how are you"])
