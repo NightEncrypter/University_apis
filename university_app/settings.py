@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+from pickle import APPEND
 import django_heroku
 import os 
 from pathlib import Path
@@ -65,7 +66,7 @@ CORS_ALLOW_ALL_ORIGINS=True
 #     'rest_framework.parsers.FormParser',
 #     'rest_framework.parsers.MultiPartParser',
 # )
-
+APPEND_SLASH=False
 ROOT_URLCONF = 'university_app.urls'
 
 TEMPLATES = [
