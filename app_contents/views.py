@@ -13,14 +13,13 @@ class SubjectVideoView(APIView):
     serializer_class=VideoSerializer
     def get(self,request):
         
-        try:
+       
             data_query=SubjectVideo.objects.all()
             serializer=VideoSerializer(data_query,many=True)
             
             response=serializer.data
             return Response({"videos":response})
-        except  :
-            print()
+       
 
     
     def post(self,request):
@@ -173,7 +172,7 @@ class LinkView(APIView):
             
     def post(self,request):
         
-            print(request.data)
+            # print(request.data)
              
             serializer=LinkSerializer(data=request.data)
             if serializer.is_valid():
