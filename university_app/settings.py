@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-from pickle import APPEND
 import django_heroku
 import os 
 from pathlib import Path
@@ -151,7 +150,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # serve file 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
@@ -166,9 +165,9 @@ STATIC_ROOT=BASE_DIR /'static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-MEDIA_ROOT=BASE_DIR / 'media'
+MEDIA_ROOT=os.path.join(BASE_DIR, 'uploaded_pictures')
 
-MEDIA_URL='media/'
+MEDIA_URL='app/'
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Activate Django-Heroku.
 django_heroku.settings(locals())
