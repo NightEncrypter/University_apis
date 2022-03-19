@@ -11,14 +11,19 @@ from .serializers import TopicSerializer, VideoSerializer,ImageSerializer,LinkSe
 # UPLOADING A VIDEO
 class SubjectVideoView(APIView):
     serializer_class=VideoSerializer
+    
+  
+    
     def get(self,request):
         
-       
+        try:    
             data_query=SubjectVideo.objects.all()
             serializer=VideoSerializer(data_query,many=True)
-            
             response=serializer.data
+            
             return Response({"videos":response})
+        except SubjectVideo.DoesNotExist:    
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
        
 
     
