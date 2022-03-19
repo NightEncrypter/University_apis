@@ -86,11 +86,11 @@ class SubjectImageView(APIView):
         try:
             
             data_query=SubjectImage.objects.all()
-            print(data_query)
+            # print(data_query)
             serializer=ImageSerializer(data_query,many=True)
             
             response=serializer.data
-            print(response,"get_img")
+            # print(response,"get_img")
             return Response(response)
         except SubjectImage.DoesNotExist:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -159,16 +159,19 @@ class LinkView(APIView):
     
     serializer_class=LinkSerializer
     
+    
+
+    
     def get(self,request):
         
         try:
             data_query=Link.objects.all()
-            serializer=LinkSerializer(data_query)
+            serializer=LinkSerializer(data_query,many=True)
             
             response=serializer.data
             return Response(response)
-        except:
-            return Response("Links Not found", status=status.HTTP_400_BAD_REQUEST)
+        except Link.DoesNotExist:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             
     def post(self,request):
         
