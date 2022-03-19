@@ -96,7 +96,7 @@ class Subject(models.Model):
     units=models.ManyToManyField(Unit,blank=True)
     name=models.CharField(max_length=150)
     subject_status=models.IntegerField(blank=True,null=True)
-    img=models.ImageField(upload_to="app/uploads/faculties/subjects/images",default='https://i.postimg.cc/vmM1Hnrc/books.jpg')
+    img=models.TextField(default='https://i.postimg.cc/vmM1Hnrc/books.jpg')
     desc=models.TextField(null=True,blank=True)
  
     

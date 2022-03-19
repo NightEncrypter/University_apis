@@ -12,11 +12,16 @@ from .serializers import TopicSerializer, VideoSerializer,ImageSerializer,LinkSe
 class SubjectVideoView(APIView):
     serializer_class=VideoSerializer
     def get(self,request):
-        data_query=SubjectVideo.objects.all()
-        serializer=VideoSerializer(data_query,many=True)
         
-        response=serializer.data
-        return Response({"videos":response})
+        try:
+            data_query=SubjectVideo.objects.all()
+            serializer=VideoSerializer(data_query,many=True)
+            
+            response=serializer.data
+            return Response({"videos":response})
+        except  :
+            print()
+
     
     def post(self,request):
         serializer=VideoSerializer(data=request.data)

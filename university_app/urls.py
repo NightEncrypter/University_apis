@@ -18,11 +18,11 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 urlpatterns = [
-    path('api/', include("app_contents.urls")),
   
+    path('admin', admin.site.urls),
     path('', include("manage_accounts.urls")),
-    path('admin/', admin.site.urls),
+    path('api', include("app_contents.urls")),
     
 ]
 
-urlpatterns+= static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+# urlpatterns+= static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
