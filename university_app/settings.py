@@ -150,7 +150,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 # serve file 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
@@ -164,10 +164,11 @@ STATIC_ROOT=BASE_DIR /'static'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+MEDIA_URL='media/'
 
 MEDIA_ROOT=os.path.join(BASE_DIR, 'uploaded_pictures')
 
-MEDIA_URL='media/'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Activate Django-Heroku.
