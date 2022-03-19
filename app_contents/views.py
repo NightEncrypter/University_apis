@@ -21,7 +21,7 @@ class SubjectVideoView(APIView):
             serializer=VideoSerializer(data_query,many=True)
             response=serializer.data
             
-            return Response({"videos":response})
+            return Response(response)
         except SubjectVideo.DoesNotExist:    
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
        
@@ -69,7 +69,6 @@ class Video_Update_Delete(APIView):
     def delete(self,request,pk,format=None):
         try:
             snippet=self.get_obj(pk)
-            serializer=VideoSerializer(snippet)
             obj_id,obj_name=snippet.id,snippet.video_name
             # print(snippet.id,"inst")
            

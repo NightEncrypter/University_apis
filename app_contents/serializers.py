@@ -1,8 +1,5 @@
-from django.forms import CharField
-from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 from app_contents.models import Student,Faculty,SubjectVideo,SubjectDocx,SubjectImage,Link,Topic,Unit,Subject,StudentChat,FacultyChat,Quiz,ClassActivity,Assignment,ClassMeet,VideoThumbnails
-from rest_framework.validators import UniqueValidator
 
 
 
@@ -25,7 +22,9 @@ class VideoSerializer(serializers.ModelSerializer):
 class LinkSerializer(serializers.ModelSerializer):
     class Meta:
         model=Link
-        fields="__all__" 
+        # fields="__all__" 
+        exclude=["subject"]
+        
         # depth=1
 
     # def validate_link_name(self,value):
