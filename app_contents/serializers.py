@@ -1,5 +1,7 @@
+
 from rest_framework import serializers
 from app_contents.models import Student,Faculty,SubjectVideo,SubjectDocx,SubjectImage,Link,Topic,Unit,Subject,StudentChat,FacultyChat,Quiz,ClassActivity,Assignment,ClassMeet,VideoThumbnails
+
 
 
 
@@ -22,10 +24,8 @@ class VideoSerializer(serializers.ModelSerializer):
 class LinkSerializer(serializers.ModelSerializer):
     class Meta:
         model=Link
-        # fields="__all__" 
-        exclude=["subject"]
-        
-        depth=1
+        fields="__all__" 
+        # depth=1
 
     # def validate_link_name(self,value):
     #         # print("runner")
@@ -66,8 +66,8 @@ class DocxSerializer(serializers.ModelSerializer):
     class Meta:
         model=SubjectDocx
         fields="__all__" 
-    def validate_link_name(self,val):
-        isexist=Link.objects.get("link")
+    # def validate_link_name(self,val):
+    #     isexist=Link.objects.get("link")
         
         
 class TopicSerializer(serializers.ModelSerializer):
@@ -76,7 +76,7 @@ class TopicSerializer(serializers.ModelSerializer):
     # images = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     # videos = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
-        # depth=1
+        depth=1
         model=Topic
         exclude=["links","images"]
         
@@ -84,7 +84,7 @@ class TopicSerializer(serializers.ModelSerializer):
 class SubjectSerializer(serializers.ModelSerializer):
     # units = serializers.PrimaryKeyRelatedField(many=True, read_only= pTrue)
     class Meta:
-        # depth=1
+        depth=1
         model=Subject
         fields="__all__" 
         
@@ -121,7 +121,7 @@ class UnitSerializer(serializers.ModelSerializer):
     # topics = serializers.HyperlinkedRelatedField( read_only=True,
     #     view_name='topic-detail',many=True)
     class Meta:
-        # depth=1
+        depth=1
         model=Unit
         fields="__all__" 
         
