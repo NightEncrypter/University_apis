@@ -25,7 +25,7 @@ class LinkSerializer(serializers.ModelSerializer):
         # fields="__all__" 
         exclude=["subject"]
         
-        # depth=1
+        depth=1
 
     # def validate_link_name(self,value):
     #         # print("runner")
