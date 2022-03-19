@@ -7,7 +7,7 @@ from rest_framework.validators import UniqueValidator
 
 
 
-class VideoSerializer(serializers.ModelSerializer):
+class VideoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model=SubjectVideo
         fields="__all__" 
