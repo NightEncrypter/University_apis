@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7cg*@rterr)h%uhye=pj@hkndvfiopad%7u8aypsd00pxzq7bf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOED_HOSTS = ['127.0.0.1','eagertolearn.herokuapp.com','localhost']
 
@@ -66,7 +66,7 @@ CORS_ALLOW_ALL_ORIGINS=True
 #     'rest_framework.parsers.FormParser',
 #     'rest_framework.parsers.MultiPartParser',
 # )
-APPEND_SLASH=False
+# APPEND_SLASH=False
 ROOT_URLCONF = 'university_app.urls'
 
 TEMPLATES = [
@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'university_app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-# ! With MongoDb
+# ! With MongoDb1
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
@@ -101,6 +101,19 @@ DATABASES = {
         }
     }
 }
+# # ! With MongoDb
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'name':"university",
+#         'ENFORCE_SCHEMA': False,
+#         'CLIENT':{
+#             'host':'mongodb+srv://manas369:manas369@cluster0.ylvco.mongodb.net/university?retryWrites=true&w=majority',
+#             'authMechanism': 'SCRAM-SHA-1'
+#         }
+#     }
+# }
+#  ' mongodb+srv://<username>:<password>@cluster0.ylvco.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 # mongodb+srv://manas2342:<password>@contact-book.z6uhs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
 AUTH_USER_MODEL="manage_accounts.MyUser"
@@ -154,9 +167,9 @@ USE_TZ = True
 
 # serve file 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
+# STATICFILES_DIRS = [
     
-]
+# ]
 # combininig to all static files into staticfiles folder
 STATIC_ROOT=BASE_DIR /'static'
 

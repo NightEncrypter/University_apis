@@ -9,9 +9,9 @@ from manage_accounts.models import MyUser
 class Student(models.Model):
     student_name=models.OneToOneField(MyUser,on_delete=models.CASCADE)
     score=models.IntegerField()
-    chat_activities=models.ManyToManyField('StudentChat')
-    recent_lectures=models.ManyToManyField('SubjectVideo')
-    recent_pdfs=models.ManyToManyField('SubjectDocx')
+    chat_activities=models.ManyToManyField('StudentChat',blank=True)
+    recent_lectures=models.ManyToManyField('SubjectVideo',blank=True)
+    recent_pdfs=models.ManyToManyField('SubjectDocx',blank=True)
     recent_links=models.ManyToManyField('Link')
     batch=models.IntegerField(blank=True,null=True)
     performance=models.CharField(blank=True,null=True,max_length=200)
@@ -21,7 +21,7 @@ class Student(models.Model):
 class Faculty(models.Model):
     faculty_name=models.OneToOneField(MyUser,on_delete=models.CASCADE,null=True,blank=True)
     subjects=models.ForeignKey('Subject',blank=True,null=True,on_delete=models.CASCADE)
-    topics=models.ManyToManyField('Topic')
+    topics=models.ManyToManyField('Topic',blank=True)
     
     
 # This is used for SUBJECT VIDEOS  ==> FACULTIES
@@ -67,10 +67,10 @@ class Topic(models.Model):
     topic_no=models.IntegerField(null=True)
 
     topic_name=models.TextField()
-    links=models.ManyToManyField(Link)
-    files=models.ManyToManyField(SubjectDocx)
-    images=models.ManyToManyField(SubjectImage)
-    videos=models.ManyToManyField(SubjectVideo)
+    links=models.ManyToManyField(Link,blank=True)
+    files=models.ManyToManyField(SubjectDocx,blank=True)
+    images=models.ManyToManyField(SubjectImage,blank=True)
+    videos=models.ManyToManyField(SubjectVideo,blank=True)
     update_at=models.DateTimeField(auto_now_add=True)
     created_at=models.DateTimeField(auto_now=True)
 

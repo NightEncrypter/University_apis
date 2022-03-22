@@ -76,17 +76,21 @@ class TopicSerializer(serializers.ModelSerializer):
     # images = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     # videos = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
-        depth=1
+        
         model=Topic
-        exclude=["links","images"]
+        
+        fields='__all__'
+        # depth=1
+        # exclude=["links","images"]
         
         
 class SubjectSerializer(serializers.ModelSerializer):
     # units = serializers.PrimaryKeyRelatedField(many=True, read_only= pTrue)
     class Meta:
-        depth=1
+    
         model=Subject
         fields="__all__" 
+        # depth=1
         
 
 class ActivitySerializer(serializers.ModelSerializer):
@@ -121,7 +125,7 @@ class UnitSerializer(serializers.ModelSerializer):
     # topics = serializers.HyperlinkedRelatedField( read_only=True,
     #     view_name='topic-detail',many=True)
     class Meta:
-        depth=1
+        # depth=1
         model=Unit
         fields="__all__" 
         
