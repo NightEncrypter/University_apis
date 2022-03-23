@@ -87,7 +87,7 @@ class TopicSerializer(serializers.ModelSerializer):
 class SubjectSerializer(serializers.ModelSerializer):
     # units = serializers.PrimaryKeyRelatedField(many=True, read_only= pTrue)
     class Meta:
-    
+        depth=2
         model=Subject
         fields="__all__" 
         depth=2
