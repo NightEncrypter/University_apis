@@ -90,7 +90,7 @@ class SubjectSerializer(serializers.ModelSerializer):
     
         model=Subject
         fields="__all__" 
-        # depth=1
+        depth=2
         
 
 class ActivitySerializer(serializers.ModelSerializer):
