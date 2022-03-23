@@ -90,17 +90,33 @@ WSGI_APPLICATION = 'university_app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-# ! With MongoDb1
+# # ! With MongoDb1
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'name':"university_app",
+#         'CLIENT':{
+#             'host':"mongodb+srv://manas2342:ilyalexa@contact-book.z6uhs.mongodb.net/university_app?retryWrites=true&w=majority",
+#             'authMechanism': 'SCRAM-SHA-1'
+#         }
+#     }
+# }
+# ! With Heroku postgres
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'name':"university_app",
-        'CLIENT':{
-            'host':"mongodb+srv://manas2342:ilyalexa@contact-book.z6uhs.mongodb.net/university_app?retryWrites=true&w=majority",
-            'authMechanism': 'SCRAM-SHA-1'
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME':os.path.join(BASE_DIR,'db.sqlite3')
+        # 'name':"university_app",
+        # 'CLIENT':{
+        #     'host':"mongodb+srv://manas2342:ilyalexa@contact-book.z6uhs.mongodb.net/university_app?retryWrites=true&w=majority",
+        #     'authMechanism': 'SCRAM-SHA-1'
+        # }
     }
 }
+
+import dj_database_url
+db_from_env=dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 # # ! With MongoDb
 # DATABASES = {
 #     'default': {
