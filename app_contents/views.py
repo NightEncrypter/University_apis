@@ -344,11 +344,12 @@ class Topic_Update_Delete(APIView):
             return get_object_or_404(Topic,id=data)
         except Topic.DoesNotExist :
             raise Http404
+        
     def get(self,request,pk):
         
         snippet=self.get_obj(pk)
         if snippet:
-            serializer=TopicSerializer(snippet,many=True)
+            serializer=TopicSerializer(snippet)
             return Response(serializer.data)
         return Response("Topic not found",status=status.HTTP_404_NOT_FOUND)
     
@@ -410,7 +411,7 @@ class Unit_Update_Delete(APIView):
         
         snippet=self.get_obj(pk)
         if snippet:
-            serializer=UnitSerializer(snippet,many=True)
+            serializer=UnitSerializer(snippet)
             return Response(serializer.data)
         return Response("Unit not found",status=status.HTTP_404_NOT_FOUND)
     
